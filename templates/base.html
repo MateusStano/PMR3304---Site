@@ -20,9 +20,15 @@
     <header id="cabecalho-principal">
         <a href="{% url 'index' %}"> <img src="{% static 'logoPoli.png' %}" width=150></a>
         <a href="{% url 'index' %}">
-            <h1>Meus Álbuns</h1>
+            <h1 class="header">MarcMed</h1>
         </a>
         <nav id="navegacao-principal">
+            {% if user.is_authenticated %}
+            <li> Logado com {{ user.username }} </li>
+            <li><a href="{% url 'logout' %}">Log out</a></li>
+            {% else %}
+            <li><a href="{% url 'login' %}">Log in</a></li>
+            {% endif %}
             <ul>
                 <li><a href="{% url 'albuns:index' %}">Álbuns</a></li>
                 <li><a href="{% url 'albuns:lists' %}">Categorias</a></li> <!-- adicionar esta linha -->

@@ -2,6 +2,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render
 from django.urls import reverse, reverse_lazy
 from django.views import generic
+from django.contrib.auth.decorators import login_required, permission_required
 
 from .forms import AlbumForm, ReviewForm
 from .models import List, Album, Review
@@ -9,6 +10,11 @@ from .models import List, Album, Review
 
 def detail_album(request, album_id):
     album = get_object_or_404(Album, pk=album_id)
+    if 'last_viewed' not in request.session:
+        request.session['last_viewed'] = []
+    request.session['last_viewed'] = [album_id] + request.session['last_viewed']
+    if len(request.session['last_viewed']) > 5:
+        request.session['last_viewed'] = request.session['last_viewed'][:-1]
     context = {'album': album}
     return render(request, 'albuns/detail.html', context)
 
@@ -17,7 +23,18 @@ class AlbumListView(generic.ListView):
     model = Album
     template_name = 'albuns/index.html'
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        if 'last_viewed' in self.request.session:
+            context['last_albuns'] = []
+            for album_id in self.request.session['last_viewed']:
+                context['last_albuns'].append(
+                    get_object_or_404(Album, pk=album_id))
+        return context
 
+
+@login_required
+@permission_required('albuns.add_album')
 def create_album(request):
     if request.method == 'POST':
         album_form = AlbumForm(request.POST)
@@ -67,7 +84,7 @@ def create_review(request, album_id):
     if request.method == 'POST':
         form = ReviewForm(request.POST)
         if form.is_valid():
-            review_author = form.cleaned_data['author']
+            review_author = request.user
             review_text = form.cleaned_data['text']
             review = Review(author=review_author,
                             text=review_text,
