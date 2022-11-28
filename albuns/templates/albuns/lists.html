@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Categorias
+{% endblock title %}
+
+{% block content %}
+<h2>Categorias</h2>
+
+<section>
+    {% for list in list_list %}
+    <hr>
+    <article>
+        <header>
+            <h2>{{list.name}} </h2>
+        </header>
+        <div>
+            <h3>{{list.desc}}</h3>
+        </div>
+        <div class="lista-de-cards">
+            {% for album in list.albuns.all %}
+            <div class="card">
+                <a href="{% url 'albuns:detail' album.id %}"><img src="{{ album.poster_url }}"
+                        alt="poster do álbum {{ album.name}}"></a>
+                <p>{{ album.name }} ({{ album.release_year }})</p>
+            </div>
+            {% endfor %}
+        </div>
+    </article>
+    {% endfor %}
+</section>
+
+{% endblock content %}

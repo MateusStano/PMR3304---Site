@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Comentar sobre o Álbum {{ album.name }} ({{ album.release_year }})</h2>
+
+<form action="{% url 'albuns:review' album.id %}" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Comentar</button>
+</form>
+
+<p><a href="{% url 'albuns:detail' album.id %}">Voltar para a página do álbum</a></p>
+{% endblock content %}

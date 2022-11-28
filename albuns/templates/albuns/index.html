@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Todos os Álbuns</h2>
+<section>
+    <p>Não encontrou o álbum? <a href="{% url 'albuns:create' %}">Adicionar Novo Álbum</a></p>
+</section>
+{% if album_list %}
+<section class="lista-de-cards">
+    {% for album in album_list %}
+    <article class="card">
+        <a href="{% url 'albuns:detail' album.id %}"><img src="{{ album.poster_url }}"
+                alt="poster do album {{ album.name}}"></a> <!-- modifique esta linha -->
+        <p>{{ album.name }} ({{ album.release_year }})</p>
+    </article>
+    {% endfor %}
+</section>
+{% else %}
+<p>Não foi encontrado nenhum album.</p>
+{% endif %}
+
+{% endblock content %}

@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Busca de Álbuns por Nome</h2>
+<form action="{% url 'albuns:search' %}">
+    <p>
+        <label for="id_query">Título:</label>
+        <input type="text" name="query" id="id_query" />
+    </p>
+    <button type="submit">Buscar</button>
+</form>
+
+
+<h2>Resultado da Busca</h2>
+{% if album_list %}
+<section class="lista-de-cards">
+    {% for album in album_list %}
+    <article class="card">
+        <img src="{{ album.poster_url }}" alt="poster do álbum {{ album.name}}">
+        <p>{{ album.name }} ({{ album.release_year }})</p>
+    </article>
+    {% endfor %}
+</section>
+{% else %}
+<p>Não foi encontrado nenhum álbum para a busca.</p>
+{% endif %}
+
+{% endblock content %}

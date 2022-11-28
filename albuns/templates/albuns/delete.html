@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<form action="{% url 'albuns:delete' album.id %}" method="post">
+    {% csrf_token %}
+    <p>
+        Você tem certeza que deseja apagar o álbum "{{ album.name }} ({{ album.release_year }})"?
+    </p>
+    <button type="submit">Apagar</button>
+</form>
+
+{% endblock content %}
