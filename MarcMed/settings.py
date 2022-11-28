@@ -54,7 +54,7 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-ROOT_URLCONF = "entrega2.urls"
+ROOT_URLCONF = "MarcMed.urls"
 
 TEMPLATES = [
     {
@@ -74,7 +74,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = "entrega2.wsgi.application"
+WSGI_APPLICATION = "MarcMed.wsgi.application"
 
 
 # Database

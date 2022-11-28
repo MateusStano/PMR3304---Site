@@ -1,2 +1,2 @@
-web: gunicorn entrega2.wsgi
+web: gunicorn MarcMed.wsgi
 release: python manage.py migrate
