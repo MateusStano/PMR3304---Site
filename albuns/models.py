@@ -1,16 +1,33 @@
 from django.db import models
 from django.conf import settings
 
-
 class Album(models.Model):
-    name = models.CharField(max_length=255)
-    release_year = models.IntegerField()
-    poster_url = models.URLField(max_length=200, null=True)
-    post_date = models.DateTimeField(auto_now=True)
-    info = models.CharField(max_length=255000)
+    date = models.DateField(null=True)
+    timeinit = models.TimeField(null=True)
+    timefinal = models.TimeField(null=True)
+    ESPECIALIDADES = [
+        ('Angiologia',"Angiologia"),
+        ('Dermatologia',"Dermatologia"),
+        ('Endocrinologia',"Endocrinologia"),
+        ('Gastroenterologia',"Gastroenterologia"),
+        ('Ginecologia e obstetrícia',"Ginecologia e obstetrícia"),
+        ('Oftalmologia',"Oftalmologia"),
+        ('Ortopedia',"Ortopedia"),
+        ('Otorrino',"Otorrino"),
+        ('Pediatria',"Pediatria"),
+        ('Psicologia',"Psicologia"),
+        ('Psiquiatria',"Psiquiatria"),
+        ('Neurologia',"Neurologia"),
+        ('Nutricionista',"Nutricionista"),
+        ('Urologia',"Urologia"),
+        ('Outros', "Outros")
+    ]
+    especialidade = models.CharField(max_length=255, choices=ESPECIALIDADES, null="True")
+    endereco = models.CharField(max_length=255,null=True    )
+    info = models.CharField(blank=True,max_length=255000,default="")
 
     def __str__(self):
-        return f'{self.name} ({self.release_year})'
+        return f'{self.date} - {self.time}'
 
 
 class Review(models.Model):
@@ -18,8 +35,11 @@ class Review(models.Model):
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
     )
-    post_date = models.DateTimeField(auto_now=True)
-    text = models.CharField(max_length=255)
+    MARCAR = [
+        ('MarcaConsulta',"Marcar consulta"),
+    ]
+    especialidade = models.CharField(max_length=255, choices=MARCAR, null="True")
+    text = models.CharField(max_length=255,null=True)
     album = models.ForeignKey(Album, on_delete=models.CASCADE)
 
     def __str__(self):

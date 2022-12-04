@@ -1,52 +1,46 @@
 {% extends 'base.html' %}
 
 {% block title %}
-{{ album.name }} ({{ album.release_year }}
+{{ album.date }} - {{ album.time }}
 {% endblock title %}
 
 {% block content %}
-<h2>Detalhes do Álbum {{ album.name }} ({{ album.release_year }}) — {{ album.post_date|date:"D d M Y"}}</h2>
+<h2>Detalhes da Consulta<h2>
 
-<hr>
+        <hr>
 
-<section class="dados-de-album">
-    <img src="{{ album.poster_url }}" alt="poster do album {{ album.name}}">
-    <ul>
-        <li>Nome: {{ album.name }}</li>
-        <li>Ano de Lançamento: {{ album.release_year }} </li>
-        <li>Data de Postagem: {{album.post_date }} </li>
-        <li>Categorias: {% for list in album.list_set.all reversed %} <a href="{% url 'albuns:lists' %}">{{list.name}}
-            </a> {% endfor %}</li>
-        <li>Informação: {{album.info }}</li>
-        <li><a href="{% url 'albuns:review' album.id %}">Comentar</a></li>
-        <li><a href="{% url 'albuns:update' album.id %}">Editar</a></li>
-        <li><a href="{% url 'albuns:delete' album.id %}">Apagar</a></li>
-    </ul>
-</section>
+        <section class="dados-de-album">
+            <ul>
+                <li class="details">Dia: {{ album.date|date:"D d M Y" }}</li>
+                <li class="details">Horário Inicial: {{ album.timeinit|date:"H:s" }} </li>
+                <li class="details">Horário Final: {{ album.timefinal|date:"H:s" }} </li>
+                <li class="details">Especialidade: {{ album.especialidade }}</li>
+                <li class="details">Informação: {{ album.info }}</li>
+                <li class="details"><a href="{% url 'albuns:update' album.id %}">Editar</a></li>
+                <li class="details"><a href="{% url 'albuns:delete' album.id %}">Apagar</a></li>
+            </ul>
+        </section>
 
-<hr>
+        <hr>
 
-<section>
-    <header>
-        <h3>Comentários</h3>
-    </header>
-    <ul>
-        {% if album.review_set.all %}
-        {% for review in album.review_set.all reversed %}
-        <figure>
-            <blockquote>
-                "{{ review.text }}"
-            </blockquote>
-            <figcaption>—{{ review.author }} | {{ review.post_date|date:"D d M Y" }} {{ review.post_date|time:"H:i" }}
-        </figure>
-        {% endfor %}
-        {% else %}
-        <p>Ainda não existe nenhum comentário para este filme.</p>
-        {% endif %}
-    </ul>
+        <section>
+            <h3>Agendamentos</h3>
+            <ul>
+                {% if album.review_set.all %}
+                {% for review in album.review_set.all reversed %}
 
-    <hr>
+                <p class="text">
+                    "{{ review.text }}"
+                </p>
+                <p class="text">—{{ review.author }}</p>
+                {% endfor %}
+                {% else %}
+                <p class="text">Esta consulta ainda não foi agendada.</p>
+                {% endif %}
+            </ul>
 
-    <a href="{% url 'albuns:review' album.pk %}"><button>Adicione um Comentario</button></a>
-</section>
-{% endblock content %}
+            <hr>
+
+            <a href="{% url 'albuns:review' album.pk %}"><button>Faça um Agendamento</button></a>
+        </section>
+        {% endblock content %}

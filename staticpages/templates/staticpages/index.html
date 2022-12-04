@@ -7,17 +7,33 @@ Página Inicial
 {% block content %}
 <h1 class="body"><b>Bem Vindo!</b></h1>
 <nav id="navegacao-principal"></nav>
-{% if user.is_authenticated %}
+{% if 'admin' in groups %}
 <p class="text"> Logado com <b>{{ user.username }}</b> </p>
-<p class="text">Continue a sessão adicionando novos horários para consultas:</p>
-<a class="button" href="{% url 'signup-clinica' %}">Add Horários</a>
+<p class="text">Continue a sessão checando ou adicionando suas consultas:</p>
+<a class="button" href="{% url 'albuns:index' %}">Verificar Consultas</a>
+</div>
+<p class="text">Ou faça logout:</p>
+<a class="button" href="{% url 'logout' %}">Log out</a>
+{% elif 'basic_user' in groups %}
+<p class="text"> Logado com <b>{{ user.username }}</b> </p>
+<p class="text">Pesquise clínicas para fazer uma consulta:</p>
+<a class="button" href="{% url 'albuns:index' %}">Pesquisar clinicas</a>
+<p class="text">Ou Cheque suas consultas marcadas:</p>
+<a class="button" href="{% url 'signup-user' %}">Verifica Consultas</a>
+</div>
+<p class="text">Ou faça logout:</p>
+<a class="button" href="{% url 'logout' %}">Log out</a>
+{% elif 'clinicas' in groups %}
+<p class="text"> Logado com <b>{{ user.username }}</b> </p>
+<p class="text">Continue a sessão checando os horários para consultas:</p>
+<a class="button" href="{% url 'albuns:index' %}">Add Horários</a>
 <p class="text">Ou checando se há consultas marcadas:</p>
 <a class="button" href="{% url 'signup-user' %}">Verifica Consultas</a>
 </div>
 <p class="text">Ou faça logout:</p>
 <a class="button" href="{% url 'logout' %}">Log out</a>
 {% else %}
-<p class="text"> Faça Login para utilizar o site:</p>
+<p class="text"> Para utilizar o site, faça Login como:</p>
 <a class="button" href="{% url 'login' %}">Log in</a>
 <p class="text"> Ou cadastre-se como:</p>
 <div class="parent">

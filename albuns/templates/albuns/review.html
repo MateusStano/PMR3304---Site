@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h2>Comentar sobre o Álbum {{ album.name }} ({{ album.release_year }})</h2>
+<h2>Agendar consulta? {{ album.datetime|date:"D d M Y" }} - {{ album.datetime|date:"H:s"}}</h2>
 
 <form action="{% url 'albuns:review' album.id %}" method="post">
     {% csrf_token %}

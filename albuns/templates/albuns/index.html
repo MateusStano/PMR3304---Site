@@ -1,38 +1,26 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h2>Todos os Álbuns</h2>
+<h2>Todos os horários estabelecidos</h2>
 <section>
-    <p>Não encontrou o álbum? <a href="{% url 'albuns:create' %}">Adicionar Novo Álbum</a></p>
+    <a class="button" href="{% url 'albuns:create' %}">Adicionar Consulta</a></p>
 </section>
 {% if album_list %}
 <section class="lista-de-cards">
     {% for album in album_list %}
     <article class="card">
-        <a href="{% url 'albuns:detail' album.id %}"><img src="{{ album.poster_url }}"
-                alt="poster do album {{ album.name}}"></a>
-        <p>{{ album.name }} ({{ album.release_year }})</p>
+        <a href="{% url 'albuns:detail' album.id %}">
+            <ul>
+                <p>{{ album.date|date:"D d M Y" }} - {{ album.timeinit|date:"H:s"}} </p>
+
+                <p> Já agendado? {% if album.review_set.all %} Sim {% else %} Não {% endif %}</p>
+            </ul>
+        </a>
     </article>
     {% endfor %}
-    {% if perms.albuns.add_album %}
-    <p>Não encontrou o filme? <a href="{% url 'albuns:create' %}">Adicionar Novo Filme</a></p>
-    {% endif%}
 </section>
 {% else %}
-<p>Não foi encontrado nenhum album.</p>
-{% endif %}
-
-{% if last_albuns %}
-<hr>
-<h2>Últimos vistos</h2>
-<section class="lista-de-cards">
-    {% for last_album in last_albuns %}
-    <article class="small-card">
-        <a href="{% url 'albuns:detail' last_album.id %}"><img src="{{ last_album.poster_url }}"
-                alt="Poster do filme {{ last_album.name}}"></a>
-    </article>
-    {% endfor %}
-</section>
+<p>Não há horários.</p>
 {% endif %}
 
 {% endblock content %}

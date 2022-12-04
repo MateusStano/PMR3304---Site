@@ -70,6 +70,7 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
+                "staticpages.context_processors.user_groups_processor",
             ],
         },
     },
@@ -138,3 +139,6 @@ LOGOUT_REDIRECT_URL = 'index'
 
 # Activate Django-Heroku.
 django_heroku.settings(locals()) 
+
+
+DATE_INPUT_FORMATS = ['%d-%m-%Y']

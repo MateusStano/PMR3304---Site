@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h2>Atualizar Dados do Álbum {{ album.name }}({{ album.release_year}})</h2>
+<h2>Atualizar Dados do Álbum {{ album.datetime|date:"D d M Y" }} - {{ album.datetime|date:"H:s"}}</h2>
 <form method="POST" action="{% url 'albuns:update' album.id%}">
     {% csrf_token %}
     {{ form.as_p }}

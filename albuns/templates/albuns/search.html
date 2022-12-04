@@ -16,8 +16,7 @@
 <section class="lista-de-cards">
     {% for album in album_list %}
     <article class="card">
-        <img src="{{ album.poster_url }}" alt="poster do álbum {{ album.name}}">
-        <p>{{ album.name }} ({{ album.release_year }})</p>
+        <p>{{ album.datetime|date:"D d M Y" }} - {{ album.datetime|date:"H:s"}}</p>
     </article>
     {% endfor %}
 </section>

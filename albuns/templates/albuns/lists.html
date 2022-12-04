@@ -20,9 +20,8 @@ Categorias
         <div class="lista-de-cards">
             {% for album in list.albuns.all %}
             <div class="card">
-                <a href="{% url 'albuns:detail' album.id %}"><img src="{{ album.poster_url }}"
-                        alt="poster do álbum {{ album.name}}"></a>
-                <p>{{ album.name }} ({{ album.release_year }})</p>
+                <a href="{% url 'albuns:detail' album.id %}">{{ album.datetime|date:"D d M Y" }} - {{
+                    album.datetime|date:"H:s"}}</a>
             </div>
             {% endfor %}
         </div>

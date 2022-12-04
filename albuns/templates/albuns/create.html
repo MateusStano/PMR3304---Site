@@ -1,11 +1,11 @@
 {% extends 'base.html' %}
 
 {% block title %}
-Criar Álbum
+Criar Horário
 {% endblock title %}
 
 {% block content %}
-<h2>Adicionar Álbum</h2>
+<h2>Adicionar Horário</h2>
 
 <form action="{% url 'albuns:create' %}" method="post">
     {% csrf_token %}

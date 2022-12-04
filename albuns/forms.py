@@ -1,10 +1,12 @@
 from django.forms import ModelForm
+
+from albuns.widget import *
 from .models import Album, Review
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.core.validators import RegexValidator
-
+from django.conf import settings
 class ClinicaCreationForm(UserCreationForm):
     email = forms.EmailField(required=True)
     address = forms.CharField(max_length=255,min_length=1,empty_value="Endereço",required=True)
@@ -79,25 +81,41 @@ class AlbumForm(ModelForm):
     class Meta:
         model = Album
         fields = [
-            'name',
-            'release_year',
-            'poster_url',
+            'date',
+            'timeinit',
+            'timefinal',
+            'especialidade',
+            'endereco',
             'info',
         ]
         labels = {
-            'name': 'Título',
-            'release_year': 'Ano de Lançamento',
-            'poster_url': 'URL do poster',
-            'info': 'Informações do Álbum'
+            'date': 'Data da Consulta',
+            'timeinit': 'Horário Inicial da Consulta',
+            'timefinal': 'Horário Final da Consulta',
+            'especialidade' : 'Especialidade da Consulta',
+            'endereco' : 'Endereço ou local da consulta',
+            'info': 'Informações Adicionais (Opcional)'
         }
-
+        widgets = {
+            'date' : DateTimePickerInput(
+            format='%d/%m/%Y %H:%M', attrs={'class':'form-control','type': 'date'},
+        ),
+            'timeinit' : DateTimePickerInput(
+                format='%d/%m/%Y %H:%M', attrs={'class':'form-control','type': 'time'},
+            ),
+            'timefinal' : DateTimePickerInput(
+                format='%d/%m/%Y %H:%M', attrs={'class':'form-control','type': 'time'},
+            ),
+        }
 
 class ReviewForm(ModelForm):
     class Meta:
         model = Review
         fields = [
+            'especialidade',
             'text',
         ]
         labels = {
-            'text': 'Resenha',
+            'especialidade' : 'Marcar Consulta?',
+            'text': 'Cometário adicional (opcional):',
         }

@@ -38,6 +38,13 @@ class AlbumListView(generic.ListView):
 def create_album(request):
     if request.method == 'POST':
         album_form = AlbumForm(request.POST)
+        if album_form.is_valid():
+           instance = album_form.save()
+           return HttpResponseRedirect(
+                reverse('albuns:index'))
+        else:
+            # you probably want to show the errors in that case to the user
+            print(album_form.errors)
     else:
         album_form = AlbumForm()
     context = {'album_form': album_form, }
@@ -50,18 +57,14 @@ def update_album(request, album_id):
     if request.method == "POST":
         form = AlbumForm(request.POST)
         if form.is_valid():
-            album.name = form.cleaned_data['name']
-            album.release_year = form.cleaned_data['release_year']
-            album.poster_url = form.cleaned_data['poster_url']
+            album.datetime = form.cleaned_data['datetime']
             album.save()
             return HttpResponseRedirect(
                 reverse('albuns:detail', args=(album.id, )))
     else:
         form = AlbumForm(
             initial={
-                'name': album.name,
-                'release_year': album.release_year,
-                'poster_url': album.poster_url
+                'datetime': album.datetime,
             })
 
     context = {'album': album, 'form': form}
