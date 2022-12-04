@@ -26,5 +26,7 @@ Login
     <input type="hidden" name="next" value="{{ next }}">
 </form>
 
-<p>Não possui usuário? <a href="{% url 'signup' %}">Cadastre-se</a></p>
+<p>Não possui usuário? <a href="{% url 'signup-clinica' %}">Cadastre-se como clínica</a>
+    <a href="{% url 'signup-user' %}">Cadastre-se como usuário</a>
+</p>
 {% endblock %}

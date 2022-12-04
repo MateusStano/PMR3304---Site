@@ -6,5 +6,24 @@ Página Inicial
 
 {% block content %}
 <h1 class="body"><b>Bem Vindo!</b></h1>
-<p>A Página que contém meus álbuns e informações sobre eles</p>
+<nav id="navegacao-principal"></nav>
+{% if user.is_authenticated %}
+<p class="text"> Logado com <b>{{ user.username }}</b> </p>
+<p class="text">Continue a sessão adicionando novos horários para consultas:</p>
+<a class="button" href="{% url 'signup-clinica' %}">Add Horários</a>
+<p class="text">Ou checando se há consultas marcadas:</p>
+<a class="button" href="{% url 'signup-user' %}">Verifica Consultas</a>
+</div>
+<p class="text">Ou faça logout:</p>
+<a class="button" href="{% url 'logout' %}">Log out</a>
+{% else %}
+<p class="text"> Faça Login para utilizar o site:</p>
+<a class="button" href="{% url 'login' %}">Log in</a>
+<p class="text"> Ou cadastre-se como:</p>
+<div class="parent">
+    <a class="button" href="{% url 'signup-clinica' %}">Clínica</a>
+    <a class="button" href="{% url 'signup-user' %}">Usuário</a>
+</div>
+{% endif %}
+</nav>
 {% endblock content %}
