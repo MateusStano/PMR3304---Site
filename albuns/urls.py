@@ -5,6 +5,8 @@ from . import views
 app_name = 'albuns'
 urlpatterns = [
     path('', views.AlbumListView.as_view(), name='index'),
+    path('especialidades', views.AlbumListViewEspecialidades.as_view(), name='especialidades'),    
+    path('consultasmarcadas', views.AlbumListViewconsultasmarcadas.as_view(), name='consultasmarcadas'),    
     path('create/', views.create_album, name='create'),
     path('<int:album_id>/', views.detail_album,
          name='detail'),

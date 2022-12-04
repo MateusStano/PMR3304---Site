@@ -32,6 +32,32 @@ class AlbumListView(generic.ListView):
                     get_object_or_404(Album, pk=album_id))
         return context
 
+class AlbumListViewEspecialidades(generic.ListView):
+    model = Album
+    template_name = 'albuns/especialidades.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        if 'last_viewed' in self.request.session:
+            context['last_albuns'] = []
+            for album_id in self.request.session['last_viewed']:
+                context['last_albuns'].append(
+                    get_object_or_404(Album, pk=album_id))
+        return context
+
+class AlbumListViewconsultasmarcadas(generic.ListView):
+    model = Album
+    template_name = 'albuns/consultasmarcadas.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        if 'last_viewed' in self.request.session:
+            context['last_albuns'] = []
+            for album_id in self.request.session['last_viewed']:
+                context['last_albuns'].append(
+                    get_object_or_404(Album, pk=album_id))
+        return context
+
 
 @login_required
 @permission_required('albuns.add_album')

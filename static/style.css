@@ -30,6 +30,9 @@ header {
     background: #CE2D4F;
     padding: 20px;
     align-items: center;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: center;
 }
 
 li a {
@@ -256,4 +259,14 @@ h1.header {
     justify-content: center;
     align-items: center;
     color: whitesmoke;
+}
+
+header.specific {
+    display: flex;
+    justify-content: space-evenly;
+    width: 110%;
+    margin: 10px 0px 10px 0px;
+    background: #CE2D4F;
+    padding: 20px;
+    align-items: center;
 }

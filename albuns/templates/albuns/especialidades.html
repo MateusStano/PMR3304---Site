@@ -1,0 +1,315 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Categorias
+{% endblock title %}
+
+{% block content %}
+<h2>Consultas por especialidade</h2>
+
+<section>
+
+    <article>
+        <header class="specific">
+            <h2> Angiologia </h2>
+        </header>
+        {% for album in album_list %}
+        {% if album.especialidade == 'Angiologia' %}
+        <section class="lista-de-cards">
+            <article class="card">
+                <a href="{% url 'albuns:detail' album.id %}">
+                    <ul>
+                        <p>{{ album.date|date:"D d M Y" }} - {{ album.timeinit|date:"H:s"}} </p>
+                        <p> Já agendado? {% if album.review_set.all %} Sim {% else %} Não {% endif %}</p>
+                    </ul>
+                </a>
+            </article>
+        </section>
+        {% endif %}
+        {% endfor %}
+    </article>
+
+    <article>
+        <header class="specific">
+            <h2> Dermatologia </h2>
+        </header>
+        {% for album in album_list %}
+        {% if album.especialidade == 'Dermatologia' %}
+        <section class="lista-de-cards">
+            <article class="card">
+                <a href="{% url 'albuns:detail' album.id %}">
+                    <ul>
+                        <p>{{ album.date|date:"D d M Y" }} - {{ album.timeinit|date:"H:s"}} </p>
+                        <p> Já agendado? {% if album.review_set.all %} Sim {% else %} Não {% endif %}</p>
+                    </ul>
+                </a>
+            </article>
+        </section>
+        {% endif %}
+        {% endfor %}
+    </article>
+
+    <article>
+        <header class="specific">
+            <h2> Endocrinologia </h2>
+        </header>
+        {% for album in album_list %}
+        {% if album.especialidade == 'Endocrinologia' %}
+        <section class="lista-de-cards">
+            <article class="card">
+                <a href="{% url 'albuns:detail' album.id %}">
+                    <ul>
+                        <p>{{ album.date|date:"D d M Y" }} - {{ album.timeinit|date:"H:s"}} </p>
+                        <p> Já agendado? {% if album.review_set.all %} Sim {% else %} Não {% endif %}</p>
+                    </ul>
+                </a>
+            </article>
+        </section>
+        {% endif %}
+        {% endfor %}
+    </article>
+
+    <article>
+        <header class="specific">
+            <h2> Gastroenterologia </h2>
+        </header>
+        {% for album in album_list %}
+        {% if album.especialidade == 'Gastroenterologia' %}
+        <section class="lista-de-cards">
+            <article class="card">
+                <a href="{% url 'albuns:detail' album.id %}">
+                    <ul>
+                        <p>{{ album.date|date:"D d M Y" }} - {{ album.timeinit|date:"H:s"}} </p>
+                        <p> Já agendado? {% if album.review_set.all %} Sim {% else %} Não {% endif %}</p>
+                    </ul>
+                </a>
+            </article>
+        </section>
+        {% endif %}
+        {% endfor %}
+    </article>
+
+    <article>
+        <header class="specific">
+            <h2> Ginecologia e obstetrícia </h2>
+        </header>
+        {% for album in album_list %}
+        {% if album.especialidade == 'Ginecologia e obstetrícia' %}
+        <section class="lista-de-cards">
+            <article class="card">
+                <a href="{% url 'albuns:detail' album.id %}">
+                    <ul>
+                        <p>{{ album.date|date:"D d M Y" }} - {{ album.timeinit|date:"H:s"}} </p>
+                        <p> Já agendado? {% if album.review_set.all %} Sim {% else %} Não {% endif %}</p>
+                    </ul>
+                </a>
+            </article>
+        </section>
+        {% endif %}
+        {% endfor %}
+    </article>
+
+    <article>
+        <header class="specific">
+            <h2> Oftalmologia </h2>
+        </header>
+        {% for album in album_list %}
+        {% if album.especialidade == 'Oftalmologia' %}
+        <section class="lista-de-cards">
+            <article class="card">
+                <a href="{% url 'albuns:detail' album.id %}">
+                    <ul>
+                        <p>{{ album.date|date:"D d M Y" }} - {{ album.timeinit|date:"H:s"}} </p>
+                        <p> Já agendado? {% if album.review_set.all %} Sim {% else %} Não {% endif %}</p>
+                    </ul>
+                </a>
+            </article>
+        </section>
+        {% endif %}
+        {% endfor %}
+    </article>
+
+    <article>
+        <header class="specific">
+            <h2> Ortopedia </h2>
+        </header>
+        {% for album in album_list %}
+        {% if album.especialidade == 'Ortopedia' %}
+        <section class="lista-de-cards">
+            <article class="card">
+                <a href="{% url 'albuns:detail' album.id %}">
+                    <ul>
+                        <p>{{ album.date|date:"D d M Y" }} - {{ album.timeinit|date:"H:s"}} </p>
+                        <p> Já agendado? {% if album.review_set.all %} Sim {% else %} Não {% endif %}</p>
+                    </ul>
+                </a>
+            </article>
+        </section>
+        {% endif %}
+        {% endfor %}
+    </article>
+
+    <article>
+        <header class="specific">
+            <h2> Otorrino </h2>
+        </header>
+        {% for album in album_list %}
+        {% if album.especialidade == 'Otorrino' %}
+        <section class="lista-de-cards">
+            <article class="card">
+                <a href="{% url 'albuns:detail' album.id %}">
+                    <ul>
+                        <p>{{ album.date|date:"D d M Y" }} - {{ album.timeinit|date:"H:s"}} </p>
+                        <p> Já agendado? {% if album.review_set.all %} Sim {% else %} Não {% endif %}</p>
+                    </ul>
+                </a>
+            </article>
+        </section>
+        {% endif %}
+        {% endfor %}
+    </article>
+
+    <article>
+        <header class="specific">
+            <h2> Pediatria </h2>
+        </header>
+        {% for album in album_list %}
+        {% if album.especialidade == 'Pediatria' %}
+        <section class="lista-de-cards">
+            <article class="card">
+                <a href="{% url 'albuns:detail' album.id %}">
+                    <ul>
+                        <p>{{ album.date|date:"D d M Y" }} - {{ album.timeinit|date:"H:s"}} </p>
+                        <p> Já agendado? {% if album.review_set.all %} Sim {% else %} Não {% endif %}</p>
+                    </ul>
+                </a>
+            </article>
+        </section>
+        {% endif %}
+        {% endfor %}
+    </article>
+
+    <article>
+        <header class="specific">
+            <h2> Psicologia </h2>
+        </header>
+        {% for album in album_list %}
+        {% if album.especialidade == 'Psicologia' %}
+        <section class="lista-de-cards">
+            <article class="card">
+                <a href="{% url 'albuns:detail' album.id %}">
+                    <ul>
+                        <p>{{ album.date|date:"D d M Y" }} - {{ album.timeinit|date:"H:s"}} </p>
+                        <p> Já agendado? {% if album.review_set.all %} Sim {% else %} Não {% endif %}</p>
+                    </ul>
+                </a>
+            </article>
+        </section>
+        {% endif %}
+        {% endfor %}
+    </article>
+
+    <article>
+        <header class="specific">
+            <h2> Psiquiatria </h2>
+        </header>
+        {% for album in album_list %}
+        {% if album.especialidade == 'Psiquiatria' %}
+        <section class="lista-de-cards">
+            <article class="card">
+                <a href="{% url 'albuns:detail' album.id %}">
+                    <ul>
+                        <p>{{ album.date|date:"D d M Y" }} - {{ album.timeinit|date:"H:s"}} </p>
+                        <p> Já agendado? {% if album.review_set.all %} Sim {% else %} Não {% endif %}</p>
+                    </ul>
+                </a>
+            </article>
+        </section>
+        {% endif %}
+        {% endfor %}
+    </article>
+
+    <article>
+        <header class="specific">
+            <h2> Neurologia </h2>
+        </header>
+        {% for album in album_list %}
+        {% if album.especialidade == 'Neurologia' %}
+        <section class="lista-de-cards">
+            <article class="card">
+                <a href="{% url 'albuns:detail' album.id %}">
+                    <ul>
+                        <p>{{ album.date|date:"D d M Y" }} - {{ album.timeinit|date:"H:s"}} </p>
+                        <p> Já agendado? {% if album.review_set.all %} Sim {% else %} Não {% endif %}</p>
+                    </ul>
+                </a>
+            </article>
+        </section>
+        {% endif %}
+        {% endfor %}
+    </article>
+
+    <article>
+        <header class="specific">
+            <h2> Nutricionista </h2>
+        </header>
+        {% for album in album_list %}
+        {% if album.especialidade == 'Nutricionista' %}
+        <section class="lista-de-cards">
+            <article class="card">
+                <a href="{% url 'albuns:detail' album.id %}">
+                    <ul>
+                        <p>{{ album.date|date:"D d M Y" }} - {{ album.timeinit|date:"H:s"}} </p>
+                        <p> Já agendado? {% if album.review_set.all %} Sim {% else %} Não {% endif %}</p>
+                    </ul>
+                </a>
+            </article>
+        </section>
+        {% endif %}
+        {% endfor %}
+    </article>
+
+    <article>
+        <header class="specific">
+            <h2> Urologia </h2>
+        </header>
+        {% for album in album_list %}
+        {% if album.especialidade == 'Urologia' %}
+        <section class="lista-de-cards">
+            <article class="card">
+                <a href="{% url 'albuns:detail' album.id %}">
+                    <ul>
+                        <p>{{ album.date|date:"D d M Y" }} - {{ album.timeinit|date:"H:s"}} </p>
+                        <p> Já agendado? {% if album.review_set.all %} Sim {% else %} Não {% endif %}</p>
+                    </ul>
+                </a>
+            </article>
+        </section>
+        {% endif %}
+        {% endfor %}
+    </article>
+
+    <article>
+        <header class="specific">
+            <h2> Outros </h2>
+        </header>
+        {% for album in album_list %}
+        {% if album.especialidade == 'Outros' %}
+        <section class="lista-de-cards">
+            <article class="card">
+                <a href="{% url 'albuns:detail' album.id %}">
+                    <ul>
+                        <p>{{ album.date|date:"D d M Y" }} - {{ album.timeinit|date:"H:s"}} </p>
+                        <p> Já agendado? {% if album.review_set.all %} Sim {% else %} Não {% endif %}</p>
+                    </ul>
+                </a>
+            </article>
+        </section>
+        {% endif %}
+        {% endfor %}
+    </article>
+
+
+</section>
+
+{% endblock content %}

@@ -9,8 +9,10 @@ Página Inicial
 <nav id="navegacao-principal"></nav>
 {% if 'admin' in groups %}
 <p class="text"> Logado com <b>{{ user.username }}</b> </p>
-<p class="text">Continue a sessão checando ou adicionando suas consultas:</p>
-<a class="button" href="{% url 'albuns:index' %}">Verificar Consultas</a>
+<p class="text">Pesquise consultas disponíveis:</p>
+<a class="button" href="{% url 'albuns:especialidades' %}">Pesquisar consultas</a>
+<p class="text">Ou cheque suas consultas marcadas:</p>
+<a class="button" href="{% url 'albuns:consultasmarcadas' %}">Verifica Consultas</a>
 </div>
 <p class="text">Ou faça logout:</p>
 <a class="button" href="{% url 'logout' %}">Log out</a>

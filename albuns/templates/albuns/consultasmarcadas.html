@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Consultas Marcadas
+{% endblock title %}
+
+{% block content %}
+<h2>Consultas Agendadas</h2>
+
+<section>
+
+    <article>
+        {% for album in album_list %}
+        {% if not user.getusername == album.review_set.all.0.author %}
+        <section class="lista-de-cards">
+            <article class="card">
+                <a href="{% url 'albuns:detail' album.id %}">
+                    <ul>
+
+                        <p>{{ album.date|date:"D d M Y" }} - {{ album.timeinit|date:"H:s"}} </p>
+                        <p> Já agendado? {% if album.review_set.all %} Sim {% else %} Não {% endif %}</p>
+
+                    </ul>
+                </a>
+            </article>
+        </section>
+        {% endif %}
+        {% endfor %}
+    </article>
+
+
+</section>
+
+{% endblock content %}
