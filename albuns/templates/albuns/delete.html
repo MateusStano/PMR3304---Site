@@ -4,8 +4,7 @@
 <form action="{% url 'albuns:delete' album.id %}" method="post">
     {% csrf_token %}
     <p>
-        Você tem certeza que deseja apagar o álbum "{{ album.datetime|date:"D d M Y" }} - {{
-        album.datetime|date:"H:s"}}"?
+        Você tem certeza que deseja apagar a consulta?
     </p>
     <button type="submit">Apagar</button>
 </form>

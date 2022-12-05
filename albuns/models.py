@@ -2,6 +2,10 @@ from django.db import models
 from django.conf import settings
 
 class Album(models.Model):
+    author = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+    )
     date = models.DateField(null=True)
     timeinit = models.TimeField(null=True)
     timefinal = models.TimeField(null=True)
@@ -39,7 +43,7 @@ class Review(models.Model):
         ('MarcaConsulta',"Marcar consulta"),
     ]
     especialidade = models.CharField(max_length=255, choices=MARCAR, null="True")
-    text = models.CharField(max_length=255,null=True)
+    text = models.CharField(max_length=255,null=True,blank=True)
     album = models.ForeignKey(Album, on_delete=models.CASCADE)
 
     def __str__(self):

@@ -58,6 +58,19 @@ class AlbumListViewconsultasmarcadas(generic.ListView):
                     get_object_or_404(Album, pk=album_id))
         return context
 
+class AlbumListViewverificaconsultas(generic.ListView):
+    model = Album
+    template_name = 'albuns/verificaconsultas.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        if 'last_viewed' in self.request.session:
+            context['last_albuns'] = []
+            for album_id in self.request.session['last_viewed']:
+                context['last_albuns'].append(
+                    get_object_or_404(Album, pk=album_id))
+        return context
+
 
 @login_required
 @permission_required('albuns.add_album')
@@ -65,8 +78,10 @@ def create_album(request):
     if request.method == 'POST':
         album_form = AlbumForm(request.POST)
         if album_form.is_valid():
-           instance = album_form.save()
-           return HttpResponseRedirect(
+            instance = album_form.save(commit=False)
+            instance.author = request.user
+            instance.save()
+            return HttpResponseRedirect(
                 reverse('albuns:index'))
         else:
             # you probably want to show the errors in that case to the user
@@ -107,7 +122,8 @@ def delete_album(request, album_id):
     context = {'album': album}
     return render(request, 'albuns/delete.html', context)
 
-
+@login_required
+@permission_required('albuns.add_review')
 def create_review(request, album_id):
     album = get_object_or_404(Album, pk=album_id)
     if request.method == 'POST':

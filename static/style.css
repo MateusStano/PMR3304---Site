@@ -58,10 +58,6 @@ li.details a {
     text-decoration: none;
 }
 
-li a:hover {
-    color: var(--red);
-    text-decoration: underline;
-}
 
 ul {
     display: inline-block;
@@ -150,7 +146,7 @@ a {
 }
 
 a:hover {
-    color: var(--secondary-color-light);
+    color: var(--white);
     text-decoration: underline;
 }
 

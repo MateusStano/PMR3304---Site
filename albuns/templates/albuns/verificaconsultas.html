@@ -11,7 +11,8 @@ Consultas Marcadas
 
     <article>
         {% for album in album_list %}
-        {% if user.get_username == album.review_set.all.0.author|stringformat:"s" %}
+        {% if user.get_username == album.author|stringformat:"s" %}
+        {% if album.review_set.all %}
         <section class="lista-de-cards">
             <article class="card">
                 <a href="{% url 'albuns:detail' album.id %}">
@@ -19,11 +20,11 @@ Consultas Marcadas
                         <p>{{ album.author }} </p>
                         <p>{{ album.date|date:"D d M Y" }} - {{ album.timeinit|date:"H:s"}} </p>
                         <p> Já agendado? {% if album.review_set.all %} Sim {% else %} Não {% endif %}</p>
-
                     </ul>
                 </a>
             </article>
         </section>
+        {% endif %}
         {% endif %}
         {% endfor %}
     </article>

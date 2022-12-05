@@ -8,15 +8,17 @@
 {% if album_list %}
 <section class="lista-de-cards">
     {% for album in album_list %}
+    {% if user.get_username == album.author|stringformat:"s" %}
     <article class="card">
         <a href="{% url 'albuns:detail' album.id %}">
             <ul>
+                <p>{{ album.author }} </p>
                 <p>{{ album.date|date:"D d M Y" }} - {{ album.timeinit|date:"H:s"}} </p>
-
                 <p> Já agendado? {% if album.review_set.all %} Sim {% else %} Não {% endif %}</p>
             </ul>
         </a>
     </article>
+    {% endif %}
     {% endfor %}
 </section>
 {% else %}

@@ -9,19 +9,19 @@ Página Inicial
 <nav id="navegacao-principal"></nav>
 {% if 'admin' in groups %}
 <p class="text"> Logado com <b>{{ user.username }}</b> </p>
-<p class="text">Pesquise consultas disponíveis:</p>
-<a class="button" href="{% url 'albuns:especialidades' %}">Pesquisar consultas</a>
-<p class="text">Ou cheque suas consultas marcadas:</p>
-<a class="button" href="{% url 'albuns:consultasmarcadas' %}">Verifica Consultas</a>
+<p class="text">Continue a sessão checando os horários para consultas:</p>
+<a class="button" href="{% url 'albuns:index' %}">Add Horários</a>
+<p class="text">Ou checando se há consultas marcadas:</p>
+<a class="button" href="{% url 'albuns:verificaconsultas' %}">Verifica Consultas</a>
 </div>
 <p class="text">Ou faça logout:</p>
 <a class="button" href="{% url 'logout' %}">Log out</a>
 {% elif 'basic_user' in groups %}
 <p class="text"> Logado com <b>{{ user.username }}</b> </p>
 <p class="text">Pesquise clínicas para fazer uma consulta:</p>
-<a class="button" href="{% url 'albuns:index' %}">Pesquisar clinicas</a>
-<p class="text">Ou Cheque suas consultas marcadas:</p>
-<a class="button" href="{% url 'signup-user' %}">Verifica Consultas</a>
+<a class="button" href="{% url 'albuns:especialidades' %}">Pesquisar clinicas</a>
+<p class="text">Ou cheque suas consultas marcadas:</p>
+<a class="button" href="{% url 'albuns:consultasmarcadas' %}">Verifica Consultas</a>
 </div>
 <p class="text">Ou faça logout:</p>
 <a class="button" href="{% url 'logout' %}">Log out</a>
@@ -30,7 +30,7 @@ Página Inicial
 <p class="text">Continue a sessão checando os horários para consultas:</p>
 <a class="button" href="{% url 'albuns:index' %}">Add Horários</a>
 <p class="text">Ou checando se há consultas marcadas:</p>
-<a class="button" href="{% url 'signup-user' %}">Verifica Consultas</a>
+<a class="button" href="{% url 'albuns:verificaconsultas' %}">Verifica Consultas</a>
 </div>
 <p class="text">Ou faça logout:</p>
 <a class="button" href="{% url 'logout' %}">Log out</a>

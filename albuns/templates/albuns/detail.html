@@ -11,13 +11,14 @@
 
         <section class="dados-de-album">
             <ul>
+                <li class="details">Clínica: {{ album.author }}</li>
                 <li class="details">Dia: {{ album.date|date:"D d M Y" }}</li>
                 <li class="details">Horário Inicial: {{ album.timeinit|date:"H:s" }} </li>
                 <li class="details">Horário Final: {{ album.timefinal|date:"H:s" }} </li>
                 <li class="details">Especialidade: {{ album.especialidade }}</li>
+                {% if album.info %}
                 <li class="details">Informação: {{ album.info }}</li>
-                <li class="details"><a href="{% url 'albuns:update' album.id %}">Editar</a></li>
-                <li class="details"><a href="{% url 'albuns:delete' album.id %}">Apagar</a></li>
+                {% endif %}
             </ul>
         </section>
 
@@ -36,11 +37,12 @@
                 {% endfor %}
                 {% else %}
                 <p class="text">Esta consulta ainda não foi agendada.</p>
+                <hr>
+
+                <a href="{% url 'albuns:review' album.pk %}"><button>Faça um Agendamento</button></a>
                 {% endif %}
             </ul>
 
-            <hr>
 
-            <a href="{% url 'albuns:review' album.pk %}"><button>Faça um Agendamento</button></a>
         </section>
         {% endblock content %}

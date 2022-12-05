@@ -7,6 +7,7 @@ urlpatterns = [
     path('', views.AlbumListView.as_view(), name='index'),
     path('especialidades', views.AlbumListViewEspecialidades.as_view(), name='especialidades'),    
     path('consultasmarcadas', views.AlbumListViewconsultasmarcadas.as_view(), name='consultasmarcadas'),    
+    path('verificaconsultas', views.AlbumListViewverificaconsultas.as_view(), name='verificaconsultas'),    
     path('create/', views.create_album, name='create'),
     path('<int:album_id>/', views.detail_album,
          name='detail'),
