@@ -11,7 +11,7 @@ def signupclinica(request):
         form = ClinicaCreationForm(request.POST)
         if form.is_valid():
             user = form.save()                                
-            user_group = Group.objects.get(name='clinicas') 
+            user_group, created = Group.objects.get_or_create(name='clinicas') 
             user.groups.add(user_group)                       
 
             return HttpResponseRedirect(reverse('login'))
@@ -26,7 +26,7 @@ def signupuser(request):
         form = BasicUserCreationForm(request.POST)
         if form.is_valid():
             user = form.save()                                
-            user_group = Group.objects.get(name='basic_user') 
+            user_group, created = Group.objects.get_or_create(name='basic_user')
             user.groups.add(user_group)                       
 
             return HttpResponseRedirect(reverse('login'))
